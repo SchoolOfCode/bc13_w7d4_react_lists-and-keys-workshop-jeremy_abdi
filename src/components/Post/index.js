@@ -2,30 +2,26 @@ import React from 'react';
 
 import './index.css';
 
-function Post(props) {
-    
-    return <article key={props.postId} id="post">
-    
-    <h1>{props.title}</h1>
-    <h2>
-        <span>{props.author}</span>
-        <span>{props.date}</span>
-    </h2>
-    <p>{props.text}</p>
-    {props.highlights.map((item, index) => {
-            return (
-            <ul>
-                <li key={index} >
-                    {item}
-                </li>
-            </ul>  
-            )
-        })}
-    
-    <img src={props.image.link} alt={props.image.alt}/>
-    
- 
-  </article>;
-}
-
-export default Post;
+function Post({ post }) {
+    const { postId, title, author, date, text, highlights, image } = post;
+  
+    return (
+      <article id={`post-${postId}`} className="post">
+        <h2>{title}</h2>
+        <span className="subHeading">
+          <span>{author}</span>
+          <span>{' - '}</span>
+          <span>{date}</span>
+        </span>
+        <p>{text}</p>
+        <ul>
+          {highlights.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+        <img src={image.link} alt={image.alt} className="image"/>
+      </article>
+    );
+  }
+  
+  export default Post;
